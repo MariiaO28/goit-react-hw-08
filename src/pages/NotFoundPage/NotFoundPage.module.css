@@ -1,0 +1,10 @@
+.container {
+    font-size: 30px;
+}
+
+.link {
+    color: blue;
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+}
