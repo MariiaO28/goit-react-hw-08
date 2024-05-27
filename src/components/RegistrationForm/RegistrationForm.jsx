@@ -1,13 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
-// import { useDispatch } from 'react-redux';
-// import { register } from '../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/operations';
 import * as Yup from "yup";
 import css from './RegistrationForm.module.css';
 
 export default function RegistrationForm() {
 
-    //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
     
     const usernameFieldId = useId();
     const emailFieldId = useId();
@@ -19,16 +19,15 @@ export default function RegistrationForm() {
         password: "",
     }
 
-  const handleSubmit = (value, actions) => {
-
-    // dispatch(
-    //   register({
-    //     name: value.name,
-    //     email: value.email,
-    //     password: value.password,
-    //   })
-    // );
-
+    const handleSubmit = (value, actions) => {
+      console.log('Form values:', value); 
+    dispatch(
+      register({
+        name: value.name,
+        email: value.email,
+        password: value.password,
+      })
+    );
      actions.resetForm();
   };
     

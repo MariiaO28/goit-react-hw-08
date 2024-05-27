@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
+// import { refreshUser } from '../../redux/auth/operations.js';
 import Layout from '../Layout/Layout';
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const RegistrationPage = lazy(() => import('../../pages/RegistrationPage/RegistrationPage.jsx'));

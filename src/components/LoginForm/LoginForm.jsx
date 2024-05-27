@@ -1,12 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {login} from '../../redux/auth/operations'
 import * as Yup from "yup";
 import css from './LoginForm.module.css';
 
 export default function LoginForm() {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const emailFieldId = useId();
     const passwordFieldId = useId();
@@ -17,19 +18,19 @@ export default function LoginForm() {
     }
 
     const handleSubmit = (value, actions) => {
-    // dispatch(
-    //   logIn({
-    //     email: value.email,
-    //     password: value.password,
-    //   })
-    // )
-    //   .unwrap()
-    //   .then(() => {
-    //     console.log('login success');
-    //   })
-    //   .catch(() => {
-    //     console.log('login error');
-    //         });
+    dispatch(
+      login({
+        email: value.email,
+        password: value.password,
+      })
+    )
+      .unwrap()
+      .then(() => {
+        console.log('login success');
+      })
+      .catch(() => {
+        console.log('login error');
+            });
         actions.resetForm();
     };
     
