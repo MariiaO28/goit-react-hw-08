@@ -8,7 +8,7 @@ const activeClass = ({ isActive }) => {
 
 export default function AuthNav() {
     return (
-        <div>
+        <div className={css.authnav}>
             <NavLink to='/register' className={activeClass}>Registration</NavLink>
             <NavLink to='/login' className={activeClass}>Login</NavLink>
         </div>

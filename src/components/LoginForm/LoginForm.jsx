@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import { useDispatch } from 'react-redux';
-import {login} from '../../redux/auth/operations'
+import { login } from '../../redux/auth/operations'
+import toast from 'react-hot-toast';
 import * as Yup from "yup";
 import css from './LoginForm.module.css';
 
@@ -26,10 +27,10 @@ export default function LoginForm() {
     )
       .unwrap()
       .then(() => {
-        console.log('login success');
+        toast.success('You are succesfuly logged in!');
       })
       .catch(() => {
-        console.log('login error');
+        toast.error('Please check you email or password and try again!')
             });
         actions.resetForm();
     };

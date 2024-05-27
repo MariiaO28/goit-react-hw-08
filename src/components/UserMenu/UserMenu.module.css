@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    margin: 0;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logout {
+    width: 80px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: grey;
+    border: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout:hover {
+    background-color: blue;
+}

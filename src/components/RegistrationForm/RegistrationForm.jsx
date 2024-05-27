@@ -2,13 +2,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 import * as Yup from "yup";
 import css from './RegistrationForm.module.css';
 
 export default function RegistrationForm() {
-
-    const dispatch = useDispatch();
-    
+  
     const usernameFieldId = useId();
     const emailFieldId = useId();
     const passwordFieldId = useId();
@@ -19,22 +18,30 @@ export default function RegistrationForm() {
         password: "",
     }
 
-    const handleSubmit = (value, actions) => {
-      console.log('Form values:', value); 
-    dispatch(
-      register({
-        name: value.name,
-        email: value.email,
-        password: value.password,
-      })
-    );
-     actions.resetForm();
+  const dispatch = useDispatch();
+  
+    const handleSubmit = (values, actions) => {
+      const registerPromise = dispatch(register(values)).unwrap();
+
+      toast.promise(
+        registerPromise, {
+        loading: 'Registering...',
+        success: `Registration successful! Welcome ${values.name}!`,
+        error: (error) => `Registration failed: ${error.message}`,
+      }
+      );
+
+       registerPromise
+        .then(() => { })
+        .catch(() => { })
+      
+      actions.resetForm();
   };
     
     const RegistrUserSchema = Yup.object().shape({
         name: Yup.string().min(4, "Too Short!").max(15, "Too Long!").required("Required").trim(),
         email: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required").email('Please enter a valid email!').trim(),
-        password: Yup.string().min(4, "Too Short!").max(15, "Too Long!").required("Required").trim(),
+        password: Yup.string().min(7, "Too Short!").max(15, "Too Long!").required("Required").trim(),
     })
 
     return (

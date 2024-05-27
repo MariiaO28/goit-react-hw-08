@@ -1,7 +1,6 @@
+// import { useSelector } from "react-redux";
+
 export default function PrivateRoute() {
-    return (
-        <div>
-            
-        </div>
-    )
+    // const isLoggedOut = useSelector(selectIsLoggedIn)
+
 }
