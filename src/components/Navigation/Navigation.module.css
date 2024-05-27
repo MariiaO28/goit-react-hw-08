@@ -1,5 +1,6 @@
 .navigation {
     display: flex;
+    gap: 20px;
 }
 
 .link {
@@ -9,12 +10,9 @@
     font-weight: 600;
 }
 
-.link:last-child {
-    margin-left: 10px;
-}
 
 .active {
-    color: blue;
+    color:#0E3386;
 }
 
 .link.active::after {
@@ -22,5 +20,6 @@
     content: "";
     width: auto;
     height: 2px;
-    background-color: blue;
+    background-color: lightgray;
+    box-shadow:  0px 2px 2px #0E3386;
 }

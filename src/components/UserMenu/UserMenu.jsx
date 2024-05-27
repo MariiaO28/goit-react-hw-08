@@ -5,7 +5,6 @@ import css from './UserMenu.module.css';
 
 
 export default function UserMenu() {
-
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
 
@@ -15,7 +14,11 @@ export default function UserMenu() {
 
     return (
         <div className={css.container}>
-            <p className={css.username}>Welcome, {user.name}!</p>
+            <p className={css.username}>Welcome, {user.name}!{' '}
+            <span role="img" aria-label="Waving hand">
+             👋
+            </span>
+            </p>
             <button className={css.logout} type='button' onClick= {handleLogout} >Logout</button>
         </div>
     )

@@ -1,13 +1,25 @@
-import { deleteContact } from '../../redux/contacts/operations';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import css from './Contact.module.css';
 import { MdPerson } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { deleteContact } from '../../redux/contacts/operations';
+import EditFormModal from '../EditFormModal/EditFormModal'; 
+import css from './Contact.module.css';
 
 export default function Contact({ contact }) {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const dispatch = useDispatch();
+
     const handleDelete = () => dispatch(deleteContact(contact.id));
 
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+    
     return (
         <div className={css.card}>
             <ul className={css.list}>
@@ -25,6 +37,17 @@ export default function Contact({ contact }) {
                 onClick={handleDelete}>
                 Delete
             </button>
+            <button
+                className={css.edit}
+                onClick={openModal}>
+                Edit
+            </button>
+
+            <EditFormModal
+                contact={contact} 
+                modalIsOpen={modalIsOpen} 
+                closeModal={closeModal} 
+            />
         </div>
     )
 }

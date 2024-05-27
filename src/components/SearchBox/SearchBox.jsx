@@ -11,7 +11,11 @@ export default function SearchBox() {
 
     return (
         <div className={css.search}>
-            <p className={css.text}>Find contacts by name</p>
+            <p className={css.text}>Find contacts by name {' '}
+            <span size="24px" role="img" aria-label="Waving hand">
+             🔎
+            </span>
+            </p>
             <input
                 className={css.field}
                 type="text"

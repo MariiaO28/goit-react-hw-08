@@ -29,7 +29,7 @@ export default function ContactsPage() {
             {!loading && !error &&
                 (contacts.length > 0 ?
                 (<ContactList />) :
-                (<p>Your phone book is empty, please start adding your contacts!</p>)
+                (<p className={css.text}>Your phone book is empty, please start adding your contacts!</p>)
       )}
        </div>
     )

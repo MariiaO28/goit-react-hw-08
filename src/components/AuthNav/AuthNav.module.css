@@ -1,6 +1,5 @@
 .authnav {
     display: flex;
-
 }
 
 .link {
@@ -15,13 +14,14 @@
 }
 
 .active {
-    color: blue;
+    color:#0E3386;
 }
 
 .link.active::after {
     display: flex;
     content: "";
     width: auto;
-    height: 2px;
-    background-color: blue;
+    height: 1px;
+    background-color: lightgray;
+    box-shadow:  2px 2px 2px #0E3386;
 }

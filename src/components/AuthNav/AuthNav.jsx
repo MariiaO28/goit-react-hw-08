@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
-import clsx from "clsx";
+import { NavLink } from 'react-router-dom';
+import clsx from 'clsx';
 import css from './AuthNav.module.css'
 
 const activeClass = ({ isActive }) => {
@@ -7,6 +7,7 @@ const activeClass = ({ isActive }) => {
 }
 
 export default function AuthNav() {
+
     return (
         <div className={css.authnav}>
             <NavLink to='/register' className={activeClass}>Registration</NavLink>
