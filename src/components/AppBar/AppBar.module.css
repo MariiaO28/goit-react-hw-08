@@ -1,17 +1,34 @@
+.bar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
 .container {
     width: 100%;
     height: 60px;
     display: flex;
-    padding: 10px;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.container::after {
+.phonebook {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.header {
+    margin: 0;
+}
+
+.icon {
+    align-self: center;
+}
+
+.bar::after {
     display: block;
-    margin-top: 15px;
     content: "";
     width: 100%;
     height: 2px;

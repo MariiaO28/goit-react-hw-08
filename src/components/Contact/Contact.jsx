@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { MdPerson } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { TiEdit } from "react-icons/ti";
 import { deleteContact } from '../../redux/contacts/operations';
 import EditFormModal from '../EditFormModal/EditFormModal'; 
 import css from './Contact.module.css';
@@ -32,16 +33,18 @@ export default function Contact({ contact }) {
                     <span className={css.text}>{contact.number}</span>
                 </li>
             </ul>
+            <div className={css.buttonsContainer}>
+            <button
+                className={css.edit}
+                onClick={openModal}>
+                <TiEdit size='16'/>
+            </button>
             <button
                 className={css.button}
                 onClick={handleDelete}>
                 Delete
-            </button>
-            <button
-                className={css.edit}
-                onClick={openModal}>
-                Edit
-            </button>
+                </button>
+            </div>
 
             <EditFormModal
                 contact={contact} 

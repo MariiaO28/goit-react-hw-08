@@ -1,8 +1,28 @@
 .container {
-    padding-top: 20px;
-    height: 100%;
+    padding-top: 40px;
 }
 
-.header {
-    margin: 0;
+.text{
+    width: 700px;
+    font-size: medium;
+    margin: 0 auto;
+    text-align: center;
+    font-style: italic;
+   color: black;
+   text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
+
+}
+
+.link {
+    color:black ;
+    text-shadow: 5px 5px 20px white;
+    text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
+
+}
+
+.picture {
+    display: block;
+    margin: 0 auto;
 }

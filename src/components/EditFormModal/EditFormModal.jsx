@@ -1,19 +1,18 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import Modal from 'react-modal';
-import { useId } from "react";
-import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
-import { editContact } from '../../redux/contacts/operations';
+import { Formik, Form, Field } from "formik";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import * as Yup from "yup";
+import toast from 'react-hot-toast';
+import Modal from 'react-modal';
+import { IoCloseSharp } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
+import { editContact } from '../../redux/contacts/operations';
 import css from './EditFormModal.module.css';
 Modal.setAppElement('#root');
 
 export default function EditForm({contact, modalIsOpen, closeModal}) {
 
     const dispatch = useDispatch();
-
-    const nameFieldId = useId();
-    const numberFieldId = useId();
 
     const initialValues = {
         id: contact.id,
@@ -53,27 +52,52 @@ export default function EditForm({contact, modalIsOpen, closeModal}) {
             className={css.modal}
             overlayClassName={css.overlay}
         >
-            <Formik
+            <button onClick={closeModal} className={css.closeButton}><IoCloseSharp size='16'/></button>
+            <Formik 
             initialValues={initialValues}
             onSubmit={handleSubmit}
             validationSchema={ContactSchema}
-            >
+        >
+            {({ errors, touched }) => (
                 <Form className={css.form}>
-                    <label className={css.label} htmlFor={nameFieldId}>Name </label>
-                    <Field className={css.field} type="text" name="name" id={nameFieldId}></Field>
-                    <ErrorMessage className={css.error} name="name" component="span"></ErrorMessage>
-                    
-                    <label className={css.label} htmlFor={numberFieldId}>Number </label>
-                    <Field className={css.field} type="tel" name="number" id={numberFieldId}></Field>
-                    <ErrorMessage className={css.error} name="number" component="span"></ErrorMessage>
-                    
+                    <Box
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '29ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <Field name="name" className={css.input}>
+                            {({ field }) => (
+                                <TextField
+                                    {...field}
+                                    id="outlined-name"
+                                    label="Name"
+                                    variant="outlined"
+                                    error={touched.name && Boolean(errors.name)}
+                                    helperText={touched.name && errors.name}
+                                />
+                            )}
+                        </Field>
+                        <Field name="number">
+                            {({ field }) => (
+                                <TextField
+                                    {...field}
+                                    id="outlined-number"
+                                    label="Phone number"
+                                    type="tel"
+                                    variant="outlined"
+                                    error={touched.number && Boolean(errors.number)}
+                                    helperText={touched.number && errors.number}
+                                />
+                            )}
+                        </Field>
+                    </Box>
 
                     <button className={css.button} type="submit" >Update</button>
-                    <button onClick={closeModal} className={css.closeButton}>Close</button>
-
                 </Form>
-            </Formik>
-        </Modal>
+            )}
+        </Formik>
+    </Modal>
     )
-
 }

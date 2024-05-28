@@ -8,12 +8,12 @@ export default function ContactList() {
     const contacts = useSelector(selectFilteredContacts);
     
     return (
-        <ul className={css.list}>
+            <ul className={css.list}>
             {contacts.map((contact) => (
                 <li className={css.card} key={contact.id}>
                     <Contact contact={contact}/>
                 </li>
             ))}
-        </ul>
+            </ul>
     )
 }

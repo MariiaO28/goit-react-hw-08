@@ -1,19 +1,17 @@
 body {
-  height: 100%;
-  margin: 0;
-}
-
-.container {
-  height: 100vh;
-  width: 100vw;
-  padding: 20px;
-  margin: 0 auto;
-  background-size: cover; 
   background-image: linear-gradient(
     to bottom,
     rgba(176,196,222, 2),
     rgba(22, 22, 70, 0.15)
   );
-  display: flex;
-  flex-direction: column;
+  background-repeat: no-repeat;
 }
+
+.container {
+    width: 1280px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+

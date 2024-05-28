@@ -1,7 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
-import { useId } from "react";
 import toast from 'react-hot-toast';
 import * as Yup from "yup";
 import css from './ContactForm.module.css';
@@ -9,9 +10,6 @@ import css from './ContactForm.module.css';
 export default function ContactForm() {
     
     const dispatch = useDispatch();
-    
-    const nameFieldId = useId();
-    const numberFieldId = useId();
 
     const initialValues = {
         id:"",
@@ -24,7 +22,7 @@ export default function ContactForm() {
         )
             .unwrap()
             .then(() => {
-                toast.success('You have succesfuly created the!');
+                toast.success(`You have succesfuly created ${value.name} contact!`);
             })
             .catch(() => {
                 toast.error('An error occured. Please try again.')
@@ -38,22 +36,50 @@ export default function ContactForm() {
     })
 
     return (
-        <Formik
+        <Formik 
             initialValues={initialValues}
             onSubmit={handleSubmit}
             validationSchema={ContactSchema}
         >
-            <Form className={css.form}>
-                <label className={css.label} htmlFor={nameFieldId}>Name </label>
-                <Field className={css.field} type="text" name="name" id={nameFieldId}></Field>
-                <ErrorMessage className={css.error} name="name" component="span"></ErrorMessage>
+            {({ errors, touched }) => (
+                <Form className={css.form}>
+                    <Box
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '29ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <Field name="name">
+                            {({ field }) => (
+                                <TextField
+                                    {...field}
+                                    id="outlined-name"
+                                    label="Name"
+                                    variant="outlined"
+                                    error={touched.name && Boolean(errors.name)}
+                                    helperText={touched.name && errors.name}
+                                />
+                            )}
+                        </Field>
+                        <Field name="number">
+                            {({ field }) => (
+                                <TextField
+                                    {...field}
+                                    id="outlined-number"
+                                    label="Phone number"
+                                    type="tel"
+                                    variant="outlined"
+                                    error={touched.number && Boolean(errors.number)}
+                                    helperText={touched.number && errors.number}
+                                />
+                            )}
+                        </Field>
+                    </Box>
 
-                <label className={css.label} htmlFor={numberFieldId}>Number </label>
-                <Field className={css.field} type="tel" name="number" id={numberFieldId}></Field>
-                <ErrorMessage className={css.error} name="number" component="span"></ErrorMessage>
-
-                <button className={css.button} type="submit">Add contact</button>
-            </Form>
+                    <button className={css.button} type="submit">Add contact</button>
+                </Form>
+            )}
         </Formik>
     )
 }
